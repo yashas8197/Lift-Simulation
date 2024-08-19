@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./main.css" />
+    <title>Lift Simulation</title>
+  </head>
+  <body>
+    <h1>RDS : Lift Simulation</h1>
+
+    <section class="user_input">
+      <form id="user_form" class="user_form">
+        <div class="form_field">
+          <label class="form_label">Number of Floors</label>
+          <input
+            class="form_input"
+            name="totalFloors"
+            type="number"
+            id="totalFloors"
+            placeholder="No.Of Floors "
+            min="1"
+            required
+          />
+        </div>
+        <div class="form_field">
+          <label class="form_label">Number of Lifts</label>
+          <input
+            class="form_input"
+            name="totalLifts"
+            type="number"
+            id="totalLifts"
+            placeholder="No.Of Lifts (Max:5)"
+            min="1"
+            required
+          />
+        </div>
+        <div class="form_btns-container">
+          <button class="btn" type="submit">Generate</button>
+        </div>
+      </form>
+    </section>
+    <section class="building"></section>
+    <script src="./script.js"></script>
+  </body>
+</html>

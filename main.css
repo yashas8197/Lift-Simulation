@@ -1,0 +1,103 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.user_input {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+}
+
+.user_form .form_field {
+  margin-bottom: 15px;
+}
+
+.form_label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form_input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form_input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form_btns-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Floor Styles */
+
+.floor_container {
+  height: 10rem;
+  border-bottom: 1px solid black;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0 1rem;
+  position: relative;
+}
+
+.floor_btns-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.floor_btns-container button {
+  width: 5rem;
+}
+
+/* lift */
+
+.lift-container {
+  display: flex;
+}
+
+.lift {
+  height: 7rem;
+  width: 6rem;
+  background-color: aqua;
+  margin: 0.5rem 0;
+  display: inline-block;
+  border-radius: 5px;
+  border: 2px solid black;
+}
