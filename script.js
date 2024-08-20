@@ -24,8 +24,6 @@ function validateUserForm(event) {
     alert("No.of lifts should be greater than 0");
   } else if (floorCount <= 0) {
     alert("No. of Floors should be greater than 0");
-  } else if (liftCount > 5) {
-    alert("Total lifts should be less than 6");
   } else if (floorCount > 9999) {
     alert("App will crash if the no.of floors is more than 9999");
   } else if (liftCount > floorCount) {
@@ -193,7 +191,7 @@ function closeLiftDoors(liftElement) {
 }
 
 function checkIsLiftAlreadyPresent(destinationFloor) {
-  const allLiftElements = document.querySelectorAll(".lift");
+  /* const allLiftElements = document.querySelectorAll(".lift");
   const height = -(destinationFloor - 1) * 10; // Calculate the Y position for the requested floor
 
   for (const lift of allLiftElements) {
@@ -203,7 +201,7 @@ function checkIsLiftAlreadyPresent(destinationFloor) {
       let liftId = Number(liftName.replace(/\D/g, "")); // Extract the lift ID from the lift's name
       return { liftElement: lift, liftId }; // Return the lift if found
     }
-  }
+  } */
 
   return { liftElement: null, liftId: null }; // Return null if no lift is found at the destination floor
 }
