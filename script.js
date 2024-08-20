@@ -64,6 +64,12 @@ function generateFloors() {
     upBtn.addEventListener("click", buttonClickHandler);
     downBtn.addEventListener("click", buttonClickHandler);
 
+    if (i === totalFloors) {
+      upBtn.setAttribute("disabled", true);
+    } else if (i === 1) {
+      downBtn.setAttribute("disabled", true);
+    }
+
     // Set attributes to identify which floor the buttons belong to
     floorDiv.setAttribute("floor-id", i);
     upBtn.setAttribute("floor-id", i);
@@ -84,6 +90,20 @@ function generateLifts() {
   for (let i = 0; i < totalLifts; i++) {
     let liftContainer = document.createElement("div");
     liftContainer.className = "lift"; // Assign a class to the lift
+
+    const liftDoors = document.createElement("div");
+    liftDoors.className = "lift_doors-container";
+    const liftLeftDoor = document.createElement("div");
+    const liftRightDoor = document.createElement("div");
+
+    liftLeftDoor.className = "left-door";
+    liftRightDoor.className = "right-door";
+
+    liftContainer.id = `lift ${i}`;
+
+    liftDoors.append(liftLeftDoor, liftRightDoor);
+    liftContainer.append(liftDoors);
+
     liftContainer.id = `lift${i}`; // Give each lift a unique ID
 
     firstFloor.append(liftContainer); // Place the lift on the 1st floor
@@ -130,8 +150,6 @@ function getAvailableLift(destinationFloor) {
     }
   });
 
-  console.log(isLiftMoving);
-
   return nearestLift; // Return the nearest available lift
 }
 
@@ -143,15 +161,35 @@ function moveLift(liftInfo, destinationFloor) {
   liftElement.style.transition = `transform 2s ease-in-out`; // Set the speed based on the distance
   liftElement.style.transform = `translateY(${height}rem)`; // Move the lift to the destination
 
-  // After the movement is complete, mark the lift as available and handle any pending requests
+  // Open the lift doors after it reaches the floor
   setTimeout(() => {
-    isLiftMoving[liftId] = false; // Mark the lift as available
-    if (pendingFloors.length > 0) {
-      console.log(pendingFloors);
-      const nextFloor = pendingFloors.shift();
-      moveLift(liftInfo, nextFloor); // Move the lift to the next pending floor
-    }
-  }, Math.abs(height) * 1000); // The time is based on the distance the lift has to travel
+    openLiftDoors(liftElement); // Open the doors
+
+    setTimeout(() => {
+      closeLiftDoors(liftElement); // Close the doors after a delay
+
+      // After the doors close, mark the lift as available and handle any pending requests
+      setTimeout(() => {
+        isLiftMoving[liftId] = false; // Mark the lift as available
+        if (pendingFloors.length > 0) {
+          const nextFloor = pendingFloors.shift();
+          moveLift(liftInfo, nextFloor); // Move the lift to the next pending floor
+        }
+      }, 2500); // Wait for the doors to close before marking the lift as available
+    }, 2500); // Keep the doors open for 2.5 seconds before closing them
+  }, 2500); // Wait for the lift to reach the floor plus an additional 2 seconds
+}
+
+function openLiftDoors(liftElement) {
+  const liftDoors = liftElement.querySelector(".lift_doors-container");
+  liftDoors.classList.add("openLift");
+  liftDoors.classList.remove("closeLift");
+}
+
+function closeLiftDoors(liftElement) {
+  const liftDoors = liftElement.querySelector(".lift_doors-container");
+  liftDoors.classList.add("closeLift");
+  liftDoors.classList.remove("openLift");
 }
 
 function checkIsLiftAlreadyPresent(destinationFloor) {

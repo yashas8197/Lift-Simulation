@@ -101,3 +101,38 @@ body {
   border-radius: 5px;
   border: 2px solid black;
 }
+
+.lift_doors-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: yellow;
+}
+
+.lift_doors-container .left-door {
+  border-right: 1px solid black;
+  width: 50%;
+  background-color: aqua;
+}
+
+.lift_doors-container .right-door {
+  border-left: 1px solid black;
+  width: 50%;
+  background-color: aqua;
+}
+
+.lift_doors-container.openLift .left-door {
+  transform: translateX(-1.5em) scaleX(0);
+  transition: transform 2.5s ease-in-out;
+}
+
+.lift_doors-container.openLift .right-door {
+  transform: translateX(1.5em) scaleX(0);
+  transition: transform 2.5s ease-in-out;
+}
+
+.lift_doors-container.closeLift .left-door,
+.lift_doors-container.closeLift .right-door {
+  transform: translateX(0);
+  transition: transform 2.5s ease-in-out;
+}
