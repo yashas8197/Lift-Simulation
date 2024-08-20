@@ -90,6 +90,9 @@ body {
 
 .lift-container {
   display: flex;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 4rem); /* Subtract any padding or margins */
+  overflow-y: auto;
 }
 
 .lift {
@@ -100,6 +103,7 @@ body {
   display: inline-block;
   border-radius: 5px;
   border: 2px solid black;
+  overflow: hidden; /* Ensures doors don't overflow the lift */
 }
 
 .lift_doors-container {
@@ -107,34 +111,36 @@ body {
   height: 100%;
   width: 100%;
   background-color: yellow;
+  position: relative;
+  overflow: hidden; /* Ensures doors stay within the lift */
+}
+
+.lift_doors-container .left-door,
+.lift_doors-container .right-door {
+  width: 50%;
+  background-color: aqua;
+  transition: transform 2.5s ease-in-out;
 }
 
 .lift_doors-container .left-door {
   border-right: 1px solid black;
-  width: 50%;
-  background-color: aqua;
 }
 
 .lift_doors-container .right-door {
   border-left: 1px solid black;
-  width: 50%;
-  background-color: aqua;
 }
 
 .lift_doors-container.openLift .left-door {
-  transform: translateX(-1.5em) scaleX(0);
-  transition: transform 2.5s ease-in-out;
+  transform: translateX(-100%); /* Fully opens the left door to the left */
 }
 
 .lift_doors-container.openLift .right-door {
-  transform: translateX(1.5em) scaleX(0);
-  transition: transform 2.5s ease-in-out;
+  transform: translateX(100%); /* Fully opens the right door to the right */
 }
 
 .lift_doors-container.closeLift .left-door,
 .lift_doors-container.closeLift .right-door {
-  transform: translateX(0);
-  transition: transform 2.5s ease-in-out;
+  transform: translateX(0); /* Resets the doors to the closed position */
 }
 
 @media screen and (max-width: 768px) {
@@ -146,11 +152,6 @@ body {
     margin: 0;
   }
 
-  /* Limit to a maximum of 5 lifts on smaller screens */
-  .lift:nth-child(n + 6) {
-    display: none;
-  }
-
   .lift_doors-container.openLift .left-door {
     transform: translateX(-1.2em) scaleX(0);
     transition: transform 2.5s ease-in-out;
@@ -160,13 +161,16 @@ body {
     transform: translateX(1.2em) scaleX(0);
     transition: transform 2.5s ease-in-out;
   }
+
+  .lift_doors-container.closeLift .left-door,
+  .lift_doors-container.closeLift .right-door {
+    transform: translateX(0);
+    transition: transform 2.5s ease-in-out;
+  }
 }
 
 @media screen and (max-width: 320px) {
   /* Limit to a maximum of 3 lifts on even smaller screens */
-  .lift:nth-child(n + 4) {
-    display: none;
-  }
 
   .lift_doors-container.openLift .left-door {
     transform: translateX(-0.7em) scaleX(0);
@@ -175,6 +179,12 @@ body {
 
   .lift_doors-container.openLift .right-door {
     transform: translateX(0.7em) scaleX(0);
+    transition: transform 2.5s ease-in-out;
+  }
+
+  .lift_doors-container.closeLift .left-door,
+  .lift_doors-container.closeLift .right-door {
+    transform: translateX(0);
     transition: transform 2.5s ease-in-out;
   }
 }

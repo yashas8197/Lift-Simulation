@@ -26,8 +26,6 @@ function validateUserForm(event) {
     alert("No. of Floors should be greater than 0");
   } else if (floorCount > 9999) {
     alert("App will crash if the no.of floors is more than 9999");
-  } else if (liftCount > floorCount) {
-    alert("No. of lifts should be lesser than or equal to No. of Floors");
   } else {
     building.innerHTML = ""; // Clear the building area
     totalFloors = floorCount;
