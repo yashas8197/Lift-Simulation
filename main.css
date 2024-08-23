@@ -64,8 +64,22 @@ body {
   transform: scale(0.98);
 }
 
-/* Floor Styles */
+/* Responsive Styles for Buttons */
+@media screen and (max-width: 768px) {
+  .btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
 
+@media screen and (max-width: 480px) {
+  .btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Floor Styles */
 .floor_container {
   height: 10rem;
   border-bottom: 1px solid black;
@@ -86,8 +100,7 @@ body {
   width: 5rem;
 }
 
-/* lift */
-
+/* Lift Styles */
 .lift-container {
   display: flex;
   flex-wrap: wrap;
