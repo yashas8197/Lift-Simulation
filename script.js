@@ -16,20 +16,25 @@ function validateUserForm(event) {
   event.preventDefault(); // Prevents the form from reloading the page when submitted
 
   // Get the values input by the user
-  const liftCount = +document.querySelector("#totalLifts").value;
-  const floorCount = +document.querySelector("#totalFloors").value;
+  const liftCount = document.querySelector("#totalLifts").value;
+  const floorCount = document.querySelector("#totalFloors").value;
+
+  // Regular expression to detect any special characters
+  const invalidChars = /[!@#$%^&*(),.?":{}|<>]/;
 
   // Validating the user's input
-  if (liftCount <= 0) {
-    alert("No.of lifts should be greater than 0");
-  } else if (floorCount <= 0) {
+  if (invalidChars.test(liftCount) || invalidChars.test(floorCount)) {
+    alert("Please enter valid numbers without any special characters.");
+  } else if (+liftCount <= 0) {
+    alert("No. of lifts should be greater than 0");
+  } else if (+floorCount <= 0) {
     alert("No. of Floors should be greater than 0");
-  } else if (floorCount > 9999) {
+  } else if (+floorCount > 9999) {
     alert("App will crash if the no.of floors is more than 9999");
   } else {
     building.innerHTML = ""; // Clear the building area
-    totalFloors = floorCount;
-    totalLifts = liftCount;
+    totalFloors = +floorCount;
+    totalLifts = +liftCount;
 
     userInput.style.display = "none"; // Hide the input form
 
@@ -173,7 +178,7 @@ function moveLift(liftInfo, destinationFloor) {
         }
       }, 2500); // Wait for the doors to close before marking the lift as available
     }, 2500); // Keep the doors open for 2.5 seconds before closing them
-  }, 2500); // Wait for the lift to reach the floor plus an additional 2 seconds
+  }, 2000); // Wait for the lift to reach the floor plus an additional 2 seconds
 }
 
 function openLiftDoors(liftElement) {

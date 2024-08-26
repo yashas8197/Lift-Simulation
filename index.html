@@ -21,7 +21,6 @@
             placeholder="No.Of Floors "
             min="1"
             required
-            oninput="validateFloorInput()"
           />
         </div>
         <div class="form_field">
@@ -35,7 +34,6 @@
             min="1"
             max="5"
             required
-            oninput="validateLiftInput()"
           />
         </div>
         <div class="form_btns-container">
@@ -45,26 +43,5 @@
     </section>
     <section class="building"></section>
     <script src="./script.js"></script>
-    <script>
-      function validateFloorInput() {
-        const input = document.querySelector("#totalFloors");
-        const value = input.value;
-
-        if (value < 1 || value > 9999) {
-          alert("No. of Floors should be between 1 and 9999");
-          input.value = ""; // Clear invalid input
-        }
-      }
-
-      function validateLiftInput() {
-        const input = document.querySelector("#totalLifts");
-        const value = input.value;
-
-        if (value < 1 || value > 5) {
-          alert("No. of Lifts should be between 1 and 5");
-          input.value = ""; // Clear invalid input
-        }
-      }
-    </script>
   </body>
 </html>
