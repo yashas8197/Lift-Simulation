@@ -16,21 +16,23 @@ function validateUserForm(event) {
   event.preventDefault(); // Prevents the form from reloading the page when submitted
 
   // Get the values input by the user
-  const liftCount = document.querySelector("#totalLifts").value;
-  const floorCount = document.querySelector("#totalFloors").value;
+  const liftCount = document.querySelector("#totalLifts").value.trim();
+  const floorCount = document.querySelector("#totalFloors").value.trim();
 
-  // Regular expression to detect any special characters
-  const invalidChars = /[!@#$%^&*(),.?":{}|<>]/;
+  // Regular expression to detect non-digit characters
+  const invalidChars = /\D/;
 
   // Validating the user's input
-  if (invalidChars.test(liftCount) || invalidChars.test(floorCount)) {
+  if (!liftCount || !floorCount) {
+    alert("Please enter both the number of lifts and floors.");
+  } else if (invalidChars.test(liftCount) || invalidChars.test(floorCount)) {
     alert("Please enter valid numbers without any special characters.");
-  } else if (+liftCount <= 0) {
-    alert("No. of lifts should be greater than 0");
+  } else if (+liftCount < 0) {
+    alert("The number of lifts should be greater than 0.");
   } else if (+floorCount <= 0) {
-    alert("No. of Floors should be greater than 0");
+    alert("The number of floors should be greater than 0.");
   } else if (+floorCount > 9999) {
-    alert("App will crash if the no.of floors is more than 9999");
+    alert("App will crash if the number of floors is more than 9999.");
   } else {
     building.innerHTML = ""; // Clear the building area
     totalFloors = +floorCount;
